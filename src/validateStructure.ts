@@ -3,7 +3,7 @@ export const validateStructure = (
   structure: any
 ): boolean => {
   if (structure === null || testSubject === null) {
-    return structure === null;
+    return structure === null && testSubject === null;
   }
   if (Array.isArray(structure) && Array.isArray(testSubject)) {
     if (testSubject.length !== 0) {
