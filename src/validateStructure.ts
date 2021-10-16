@@ -2,16 +2,15 @@ export const validateStructure = (
   testSubject: any,
   structure: any
 ): boolean => {
-  if (Array.isArray(structure)) {
-    if (Array.isArray(testSubject) && testSubject.length !== 0) {
+  if (structure === null || testSubject === null) {
+    return structure === null;
+  }
+  if (Array.isArray(structure) && Array.isArray(testSubject)) {
+    if (testSubject.length !== 0) {
       return testSubject.every(item => validateStructure(item, structure[0]));
     }
-    return Array.isArray(testSubject);
-  } else if (
-    typeof testSubject === 'object' &&
-    testSubject !== null &&
-    testSubject !== undefined
-  ) {
+    return true;
+  } else if (typeof structure === 'object' && typeof testSubject === 'object') {
     return Object.keys(structure).every(
       key =>
         key in testSubject &&
